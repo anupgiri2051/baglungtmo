@@ -275,6 +275,16 @@
             display: inline-block;
         }
 
+        .badge-fine {
+            background-color: #FEE2E2;
+            color: var(--gov-red);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
         .grand-total-box {
             margin-top: 20px;
             background: #F0FDF4;
@@ -531,29 +541,24 @@
 
     document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('paymentInput').value = getTodayNepaliDate();
-        handleCategoryChange(); // Load initial state and renewal fee
+        handleCategoryChange();
     });
 
-    // आर्थिक ऐन बमोजिम नवीकरण दस्तुर
     function getRenewalFee(category) {
-        // १. ठूला सवारी साधन - रू. १,०००
         if (['p_truck_bus', 'p_machinery_heavy', 'p_tipper_container', 'p_oil_gas', 
              'r_truck_bus', 'r_heavy_machinery', 'r_oil_gas_container'].includes(category)) {
             return 1000;
         }
         
-        // २. मझौला सवारी साधन - रू. ७००
         if (['p_minitruck_bus', 'p_minitipper', 'r_minitruck_bus', 'r_minitipper'].includes(category)) {
             return 700;
         }
 
-        // ३. साना सवारी साधन (कार, जीप, भ्यान, पीकअप, टेम्पो र पावर ट्रिलर) - रू. ५००
         if (['p_car_jeep', 'p_three_wheeler', 'p_tractor', 'p_power_tiller', 'p_car_electric',
              'r_car_jeep', 'r_three_wheeler', 'r_tractor', 'r_power_tiller', 'r_car_electric'].includes(category)) {
             return 500;
         }
 
-        // ४. मोटरसाइकल र स्कुटर - रू. ३००
         if (['p_bike_fuel', 'p_bike_electric'].includes(category)) {
             return 300;
         }
@@ -564,7 +569,6 @@
     function handleCategoryChange() {
         const category = document.getElementById('vehicleCategory').value;
         
-        // अटो-फिल नवीकरण दस्तुर
         document.getElementById('renewalFeeInput').value = getRenewalFee(category);
 
         document.getElementById('ccGroup').style.display = 'none';
@@ -747,8 +751,17 @@
         for (let fy = initialExpiredFY; fy <= currentPaymentFY; fy++) {
             let fyLabel = `${fy}/${(fy + 1) % 100}`;
             let fyTax = annualTax;
-            let currentYearRenewal = inputRenewalFee; // प्रत्येक आर्थिक वर्षमा नवीकरण दस्तुर जोडिनेछ
+            let currentYearRenewal = inputRenewalFee;
             let currentYearIncomeTax = baseIncomeTax;
+
+            // बितेका (अघिल्ला) वर्षहरूको भाडा सवारी साधनको आयकरमा २५% जरिवाना जोड्ने
+            let isPreviousYear = (fy < currentPaymentFY);
+            let fineBadge = '';
+
+            if (isPreviousYear && baseIncomeTax > 0) {
+                currentYearIncomeTax = baseIncomeTax * 1.25; // २५% जरिवाना
+                fineBadge = ` <span class="badge-fine">२५% जरिवाना थप</span>`;
+            }
 
             let rowTotal = fyTax + currentYearRenewal + currentYearIncomeTax;
 
@@ -763,7 +776,7 @@
                 <td><strong>${fyLabel}</strong></td>
                 <td class="text-right">Rs. ${fyTax.toLocaleString()}${discountBadge}</td>
                 <td class="text-right">Rs. ${currentYearRenewal.toLocaleString()}</td>
-                <td class="text-right">Rs. ${currentYearIncomeTax.toLocaleString()}</td>
+                <td class="text-right">Rs. ${currentYearIncomeTax.toLocaleString()}${fineBadge}</td>
                 <td class="text-right"><strong>Rs. ${rowTotal.toLocaleString()}</strong></td>
             `;
             tbody.appendChild(row);
