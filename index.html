@@ -430,6 +430,17 @@
                     <input type="number" id="renewalFeeInput" placeholder="उदा: 300" value="300" readonly style="background-color: #E2E8F0; cursor: not-allowed;">
                 </div>
 
+                <!-- नयाँ थपिएको सुविधा: थप शुल्क / रकम र शीर्षक -->
+                <div class="form-group">
+                    <label for="extraTitleInput">थप शुल्कको शीर्षक (Extra Fee Title)</label>
+                    <input type="text" id="extraTitleInput" placeholder="उदा: वातावरण कर / अन्य जरिवाना">
+                </div>
+
+                <div class="form-group">
+                    <label for="extraAmountInput">थप रकम (Extra Amount in Rs.)</label>
+                    <input type="number" id="extraAmountInput" placeholder="उदा: 500" value="0">
+                </div>
+
                 <div class="form-group">
                     <label for="expiryInput">नवीकरण म्याद सकिएको मिति (BS)</label>
                     <input type="text" id="expiryInput" placeholder="YYYY-MM-DD" value="2081-04-01">
@@ -474,11 +485,16 @@
                     <tbody id="tableBody"></tbody>
                     <tfoot id="tableFooter">
                         <tr>
-                            <td>कुल जम्मा (Total):</td>
+                            <td>कर तथा दस्तुर उप-जम्मा:</td>
                             <td class="text-right" id="totalTaxCell">Rs. 0</td>
                             <td class="text-right" id="totalRenewalCell">Rs. 0</td>
                             <td class="text-right" id="totalIncomeTaxCell">Rs. 0</td>
                             <td class="text-right" id="totalRowGrandCell" style="color: var(--gov-blue); font-size: 16px;">Rs. 0</td>
+                        </tr>
+                        <!-- थप शीर्षक तथा रकमको लागि डाइनामिक रो -->
+                        <tr id="extraFeeRow" style="display: none; background-color: #FEF3C7; font-weight: 700;">
+                            <td colspan="4" id="extraFeeTitleDisplay">थप शुल्क:</td>
+                            <td class="text-right" id="extraFeeValDisplay" style="color: #B45309;">Rs. 0</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -553,26 +569,21 @@
         handleCategoryChange();
     });
 
-    // आधिकारिक दररेट अनुसार नवीकरण दस्तुर
     function getRenewalFee(category) {
-        // १. ठूला सवारी साधन - रु. १,०००/-
         if (['p_truck_bus', 'p_machinery_heavy', 'p_tipper_container', 'p_oil_gas', 
              'r_truck_bus', 'r_heavy_machinery', 'r_oil_gas_container'].includes(category)) {
             return 1000;
         }
         
-        // २. मझौला सवारी साधन - रु. ७००/-
         if (['p_minitruck_bus', 'p_minitipper', 'r_minitruck_bus', 'r_minitipper'].includes(category)) {
             return 700;
         }
 
-        // ३. साना सवारी साधन (कार, जीप, भ्यान, पिकअप, टेम्पो, ट्र्याक्टर, पावर ट्रिलर) - रु. ५००/-
         if (['p_car_jeep', 'p_three_wheeler', 'p_tractor', 'p_power_tiller', 'p_car_electric',
              'r_car_jeep', 'r_three_wheeler', 'r_tractor', 'r_power_tiller', 'r_car_electric'].includes(category)) {
             return 500;
         }
 
-        // ४. मोटरसाइकल र स्कुटर - रु. ३००/-
         if (['p_bike_fuel', 'p_bike_electric'].includes(category)) {
             return 300;
         }
@@ -725,6 +736,9 @@
         const payment = document.getElementById('paymentInput').value;
         const inputRenewalFee = parseFloat(document.getElementById('renewalFeeInput').value) || 0;
 
+        const extraTitle = document.getElementById('extraTitleInput').value.trim();
+        const extraAmount = parseFloat(document.getElementById('extraAmountInput').value) || 0;
+
         if (!expiry || !payment) {
             alert("कृपया सही ढाँचामा आवश्यक मितिहरू उल्लेख गर्नुहोस्।");
             return;
@@ -746,14 +760,23 @@
         tbody.innerHTML = ''; 
 
         if (initialExpiredFY === currentPaymentFY && (expYear > payYear || (expYear === payYear && expMonth > payMonth) || (expYear === payYear && expMonth === payMonth && expDay >= payDay))) {
-            tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #15803d; font-weight: 700; padding: 20px;">यस आर्थिक वर्षको कर पहिले नै चुक्ता भइसकेको छ। थप शुल्क लाग्ने छैन।</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #15803d; font-weight: 700; padding: 20px;">यस आर्थिक वर्षको कर पहिले नै चुक्ता भइसकेको छ।</td></tr>';
             
             document.getElementById('totalTaxCell').innerText = 'Rs. 0';
             document.getElementById('totalRenewalCell').innerText = 'Rs. 0';
             document.getElementById('totalIncomeTaxCell').innerText = 'Rs. 0';
             document.getElementById('totalRowGrandCell').innerText = 'Rs. 0';
-            document.getElementById('grandTotalText').innerText = `Rs. 0/-`;
-            
+
+            if (extraAmount > 0) {
+                document.getElementById('extraFeeRow').style.display = 'table-row';
+                document.getElementById('extraFeeTitleDisplay').innerText = `थप शुल्क/रकम (${extraTitle || 'अन्य'}):`;
+                document.getElementById('extraFeeValDisplay').innerText = `Rs. ${extraAmount.toLocaleString()}`;
+                document.getElementById('grandTotalText').innerText = `Rs. ${extraAmount.toLocaleString()}/-`;
+            } else {
+                document.getElementById('extraFeeRow').style.display = 'none';
+                document.getElementById('grandTotalText').innerText = `Rs. 0/-`;
+            }
+
             document.getElementById('resultBox').style.display = 'block';
             return;
         }
@@ -795,12 +818,21 @@
             tbody.appendChild(row);
         }
 
-        const grandTotal = totalTax + totalRenewal + totalIncomeTax;
+        const subTotal = totalTax + totalRenewal + totalIncomeTax;
+        const grandTotal = subTotal + extraAmount;
 
         document.getElementById('totalTaxCell').innerText = `Rs. ${totalTax.toLocaleString()}`;
         document.getElementById('totalRenewalCell').innerText = `Rs. ${totalRenewal.toLocaleString()}`;
         document.getElementById('totalIncomeTaxCell').innerText = `Rs. ${totalIncomeTax.toLocaleString()}`;
-        document.getElementById('totalRowGrandCell').innerText = `Rs. ${grandTotal.toLocaleString()}`;
+        document.getElementById('totalRowGrandCell').innerText = `Rs. ${subTotal.toLocaleString()}`;
+
+        if (extraAmount > 0) {
+            document.getElementById('extraFeeRow').style.display = 'table-row';
+            document.getElementById('extraFeeTitleDisplay').innerText = `थप शुल्क/रकम (${extraTitle || 'अन्य'}):`;
+            document.getElementById('extraFeeValDisplay').innerText = `Rs. ${extraAmount.toLocaleString()}`;
+        } else {
+            document.getElementById('extraFeeRow').style.display = 'none';
+        }
 
         document.getElementById('grandTotalText').innerText = `Rs. ${grandTotal.toLocaleString()}/-`;
         
