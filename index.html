@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>सवारी साधन कर तथा राजस्व क्यालकुलेटर - गण्डकी प्रदेश</title>
+    <title>सवारी साधन कर तथा जाँचपास क्यालकुलेटर - गण्डकी प्रदेश</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -41,7 +41,6 @@
             background: linear-gradient(90deg, var(--gov-red) 50%, var(--gov-blue) 50%);
         }
 
-        /* सरकारी हेडर - Official Header Layout */
         .gov-header {
             width: 100%;
             background: #FFFFFF;
@@ -63,28 +62,21 @@
         }
 
         .gov-logo {
-            width: 100px;
+            width: 90px;
             height: auto;
             object-fit: contain;
-        }
-
-        .header-text {
-            text-align: center;
         }
 
         .header-text h3 {
             font-size: 16px;
             color: var(--gov-red);
             font-weight: 700;
-            letter-spacing: 0.3px;
-            margin-bottom: 2px;
         }
 
         .header-text h1 {
             font-size: 24px;
             color: var(--gov-blue);
             font-weight: 800;
-            line-height: 1.25;
             margin: 2px 0;
         }
 
@@ -99,8 +91,41 @@
             max-width: 900px;
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
             margin-bottom: 40px;
+        }
+
+        /* Tab Switcher Navigation Layout */
+        .tab-navigation {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid var(--card-border);
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            background: #E2E8F0;
+            color: var(--text-main);
+            border: none;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--gov-blue);
+            color: #FFFFFF;
+            border-bottom: 3px solid var(--gov-red);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         .app-card {
@@ -163,14 +188,12 @@
             font-size: 15px;
             color: var(--text-main);
             background-color: #F8FAFC;
-            transition: all 0.2s ease;
         }
 
         input:focus, select:focus {
             outline: none;
             border-color: var(--gov-blue);
             background-color: #FFFFFF;
-            box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.12);
         }
 
         .btn-submit {
@@ -183,7 +206,6 @@
             font-weight: 700;
             border-radius: 6px;
             cursor: pointer;
-            transition: background 0.2s ease;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -209,10 +231,6 @@
             justify-content: center;
             align-items: center;
             gap: 8px;
-        }
-
-        .btn-print:hover {
-            background: #116631;
         }
 
         .result-card {
@@ -266,11 +284,6 @@
             border-top: 2px solid var(--gov-blue);
         }
 
-        tfoot td {
-            font-size: 15px;
-            color: var(--gov-blue-dark);
-        }
-
         .text-right { text-align: right; }
 
         .badge-income {
@@ -304,17 +317,8 @@
             align-items: center;
         }
 
-        .grand-total-label {
-            font-size: 18px;
-            font-weight: 800;
-            color: #14532D;
-        }
-
-        .grand-total-val {
-            font-size: 26px;
-            font-weight: 800;
-            color: var(--success-green);
-        }
+        .grand-total-label { font-size: 18px; font-weight: 800; color: #14532D; }
+        .grand-total-val { font-size: 26px; font-weight: 800; color: var(--success-green); }
 
         .app-footer {
             text-align: center;
@@ -333,8 +337,7 @@
         }
 
         @media print {
-            body { background: #FFF; }
-            .top-flag-stripe, .app-card:not(.result-card), .btn-print, .app-footer { display: none !important; }
+            .top-flag-stripe, .tab-navigation, .app-card:not(.result-card), .btn-print, .app-footer { display: none !important; }
             .gov-header { border-bottom: 2px solid #000; box-shadow: none; margin-bottom: 10px; padding: 10px 0; }
             .main-container { width: 100%; max-width: 100%; margin: 0; }
             .result-card { display: block !important; border: none; box-shadow: none; }
@@ -351,7 +354,6 @@
 
 <div class="top-flag-stripe"></div>
 
-<!-- नेपाल सरकारको निशान छाप सहितको आधिकारिक हेडर -->
 <header class="gov-header">
     <div class="header-container">
         <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Emblem_of_Nepal.svg" alt="नेपालको निशान छाप" class="gov-logo">
@@ -364,139 +366,179 @@
 </header>
 
 <main class="main-container">
-    
-    <div class="app-card">
-        <div class="card-header">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-            सवारी साधन कर विवरण प्रविष्टि
-        </div>
-        <div class="card-body">
-            <div class="form-grid">
-                <div class="form-group full-span">
-                    <label for="vehicleNumber">सवारी साधन नम्बर (Vehicle Number)</label>
-                    <input type="text" id="vehicleNumber" placeholder="उदा: ध १ प ७८९० वा ध १ च १२३४">
-                </div>
 
-                <div class="form-group full-span">
-                    <label for="vehicleCategory">सवारी साधनको वर्ग (Vehicle Category)</label>
-                    <select id="vehicleCategory" onchange="handleCategoryChange()">
-                        <optgroup label="निजी सवारी साधन (Private Vehicles)">
-                            <option value="p_bike_fuel" selected>मोटरसाइकल / स्कुटर (नवीकरण: रु. ३००)</option>
-                            <option value="p_car_jeep">कार, जीप, भ्यान, पिकअप (नवीकरण: रु. ५००)</option>
-                            <option value="p_machinery_heavy">डोजर, एक्साभेटर, क्रेन जस्ता मेशिनरी (नवीकरण: रु. १,०००)</option>
-                            <option value="p_tipper_container">ट्रिपर / कन्टेनर ट्रक (नवीकरण: रु. १,०००)</option>
-                            <option value="p_minitipper">मिनीट्रिपर (नवीकरण: रु. ७००)</option>
-                            <option value="p_three_wheeler">अटो रिक्सा, थ्री ह्वीलर र टेम्पो (नवीकरण: रु. ५००)</option>
-                            <option value="p_tractor">ट्र्याक्टर (नवीकरण: रु. ५००)</option>
-                            <option value="p_power_tiller">पावर ट्रिलर (नवीकरण: रु. ५००)</option>
-                            <option value="p_minitruck_bus">मिनीट्रक / मिनीबस (नवीकरण: रु. ७००)</option>
-                            <option value="p_truck_bus">ट्रक र बस (नवीकरण: रु. १,०००)</option>
-                            <option value="p_oil_gas">तेल ट्यांकर, ग्याँस बुलेट (नवीकरण: रु. १,०००)</option>
-                            <option value="p_bike_electric">विद्युतीय मोटरसाइकल / स्कुटर (नवीकरण: रु. ३००)</option>
-                            <option value="p_car_electric">विद्युतीय कार, जीप, भ्यान (नवीकरण: रु. ५००)</option>
-                        </optgroup>
-                        <optgroup label="भाडाका सवारी साधन (Commercial Vehicles)">
-                            <option value="r_car_jeep">कार, जिप, भ्यान, पिकअप (नवीकरण: रु. ५००)</option>
-                            <option value="r_heavy_machinery">डोजर, एक्साभेटर, लोडर, क्रेन (नवीकरण: रु. १,०००)</option>
-                            <option value="r_minitipper">मिनी ट्रिपर (नवीकरण: रु. ७००)</option>
-                            <option value="r_three_wheeler">अटो रिक्सा, थ्री ह्वीलर, टेम्पो (नवीकरण: रु. ५००)</option>
-                            <option value="r_tractor">ट्र्याक्टर (नवीकरण: रु. ५००)</option>
-                            <option value="r_power_tiller">पावर ट्रिलर (नवीकरण: रु. ५००)</option>
-                            <option value="r_minitruck_bus">मिनीट्रक, मिनीबस (नवीकरण: रु. ७००)</option>
-                            <option value="r_truck_bus">ट्रक, बस (नवीकरण: रु. १,०००)</option>
-                            <option value="r_oil_gas_container">तेल ट्याङ्कर, ग्याँस बुलेट, टिपर (नवीकरण: रु. १,०००)</option>
-                            <option value="r_car_electric">विद्युतीय सवारी साधन (नवीकरण: रु. ५००)</option>
-                        </optgroup>
-                    </select>
-                </div>
+    <!-- Tab Navigation -->
+    <div class="tab-navigation">
+        <button class="tab-btn active" onclick="switchTab('taxTab')">सवारी साधन कर क्यालकुलेटर</button>
+        <button class="tab-btn" onclick="switchTab('jaachpassTab')">जाँचपास (Vehicle Inspection) क्यालकुलेटर</button>
+    </div>
 
-                <div class="form-group full-span" id="ccGroup">
-                    <label for="ccInput">इन्जिन क्षमता (Engine CC)</label>
-                    <input type="number" id="ccInput" placeholder="उदा: 150" value="150">
-                </div>
-
-                <div class="form-group full-span" id="wattGroup" style="display: none;">
-                    <label for="wattInput">मोटर क्षमता (Motor Watt)</label>
-                    <input type="number" id="wattInput" placeholder="उदा: 1200" value="1200">
-                </div>
-
-                <div class="form-group full-span" id="kwGroup" style="display: none;">
-                    <label for="kwInput">मोटर क्षमता (Motor kW)</label>
-                    <input type="number" id="kwInput" placeholder="उदा: 60" value="60">
-                </div>
-
-                <div class="form-group full-span">
-                    <label for="renewalFeeInput">वार्षिक नवीकरण दस्तुर (Yearly Renewal Fee)</label>
-                    <input type="number" id="renewalFeeInput" placeholder="उदा: 300" value="300" readonly style="background-color: #E2E8F0; cursor: not-allowed;">
-                </div>
-
-                <!-- नयाँ थपिएको सुविधा: थप शुल्क / रकम र शीर्षक -->
-                <div class="form-group">
-                    <label for="extraTitleInput">थप शुल्कको शीर्षक (Extra Fee Title)</label>
-                    <input type="text" id="extraTitleInput" placeholder="उदा: वातावरण कर / अन्य जरिवाना">
-                </div>
-
-                <div class="form-group">
-                    <label for="extraAmountInput">थप रकम (Extra Amount in Rs.)</label>
-                    <input type="number" id="extraAmountInput" placeholder="उदा: 500" value="0">
-                </div>
-
-                <div class="form-group">
-                    <label for="expiryInput">नवीकरण म्याद सकिएको मिति (BS)</label>
-                    <input type="text" id="expiryInput" placeholder="YYYY-MM-DD" value="2081-04-01">
-                </div>
-
-                <div class="form-group">
-                    <label for="paymentInput">कर बुझाउने मिति (BS)</label>
-                    <input type="text" id="paymentInput" placeholder="YYYY-MM-DD">
-                </div>
+    <!-- TAB 1: VEHICLE TAX CALCULATOR -->
+    <div id="taxTab" class="tab-content active">
+        <div class="app-card">
+            <div class="card-header">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                सवारी साधन कर विवरण प्रविष्टि
             </div>
+            <div class="card-body">
+                <div class="form-grid">
+                    <div class="form-group full-span">
+                        <label for="vehicleNumber">सवारी साधन नम्बर (Vehicle Number)</label>
+                        <input type="text" id="vehicleNumber" placeholder="उदा: ध १ प ७८९० वा ध १ च १२३४">
+                    </div>
 
-            <button class="btn-submit" onclick="calculateTax()">
-                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                कर हिसाब गर्नुहोस्
-            </button>
+                    <div class="form-group full-span">
+                        <label for="vehicleCategory">सवारी साधनको वर्ग (Vehicle Category)</label>
+                        <select id="vehicleCategory" onchange="handleCategoryChange()">
+                            <optgroup label="निजी सवारी साधन (Private Vehicles)">
+                                <option value="p_bike_fuel" selected>मोटरसाइकल / स्कुटर (नवीकरण: रु. ३००)</option>
+                                <option value="p_car_jeep">कार, जीप, भ्यान, पिकअप (नवीकरण: रु. ५००)</option>
+                                <option value="p_machinery_heavy">डोजर, एक्साभेटर, क्रेन जस्ता मेशिनरी (नवीकरण: रु. १,०००)</option>
+                                <option value="p_tipper_container">ट्रिपर / कन्टेनर ट्रक (नवीकरण: रु. १,०००)</option>
+                                <option value="p_minitipper">मिनीट्रिपर (नवीकरण: रु. ७००)</option>
+                                <option value="p_three_wheeler">अटो रिक्सा, थ्री ह्वीलर र टेम्पो (नवीकरण: रु. ५००)</option>
+                                <option value="p_tractor">ट्र्याक्टर (नवीकरण: रु. ५००)</option>
+                                <option value="p_power_tiller">पावर ट्रिलर (नवीकरण: रु. ५००)</option>
+                                <option value="p_minitruck_bus">मिनीट्रक / मिनीबस (नवीकरण: रु. ७००)</option>
+                                <option value="p_truck_bus">ट्रक र बस (नवीकरण: रु. १,०००)</option>
+                                <option value="p_oil_gas">तेल ट्यांकर, ग्याँस बुलेट (नवीकरण: रु. १,०००)</option>
+                                <option value="p_bike_electric">विद्युतीय मोटरसाइकल / स्कुटर (नवीकरण: रु. ३००)</option>
+                                <option value="p_car_electric">विद्युतीय कार, जीप, भ्यान (नवीकरण: रु. ५००)</option>
+                            </optgroup>
+                            <optgroup label="भाडाका सवारी साधन (Commercial Vehicles)">
+                                <option value="r_car_jeep">कार, जिप, भ्यान, पिकअप (नवीकरण: रु. ५००)</option>
+                                <option value="r_heavy_machinery">डोजर, एक्साभेटर, लोडर, क्रेन (नवीकरण: रु. १,०००)</option>
+                                <option value="r_minitipper">मिनी ट्रिपर (नवीकरण: रु. ७००)</option>
+                                <option value="r_three_wheeler">अटो रिक्सा, थ्री ह्वीलर, टेम्पो (नवीकरण: रु. ५००)</option>
+                                <option value="r_tractor">ट्र्याक्टर (नवीकरण: रु. ५००)</option>
+                                <option value="r_power_tiller">पावर ट्रिलर (नवीकरण: रु. ५००)</option>
+                                <option value="r_minitruck_bus">मिनीट्रक, मिनीबस (नवीकरण: रु. ७००)</option>
+                                <option value="r_truck_bus">ट्रक, बस (नवीकरण: रु. १,०००)</option>
+                                <option value="r_oil_gas_container">तेल ट्याङ्कर, ग्याँस बुलेट, टिपर (नवीकरण: रु. १,०००)</option>
+                                <option value="r_car_electric">विद्युतीय सवारी साधन (नवीकरण: रु. ५००)</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-span" id="ccGroup">
+                        <label for="ccInput">इन्जिन क्षमता (Engine CC)</label>
+                        <input type="number" id="ccInput" placeholder="उदा: 150" value="150">
+                    </div>
+
+                    <div class="form-group full-span" id="wattGroup" style="display: none;">
+                        <label for="wattInput">मोटर क्षमता (Motor Watt)</label>
+                        <input type="number" id="wattInput" placeholder="उदा: 1200" value="1200">
+                    </div>
+
+                    <div class="form-group full-span" id="kwGroup" style="display: none;">
+                        <label for="kwInput">मोटर क्षमता (Motor kW)</label>
+                        <input type="number" id="kwInput" placeholder="उदा: 60" value="60">
+                    </div>
+
+                    <div class="form-group full-span">
+                        <label for="renewalFeeInput">वार्षिक नवीकरण दस्तुर (Yearly Renewal Fee)</label>
+                        <input type="number" id="renewalFeeInput" value="300" readonly style="background-color: #E2E8F0; cursor: not-allowed;">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="extraTitleInput">थप शुल्कको शीर्षक (Extra Fee Title)</label>
+                        <input type="text" id="extraTitleInput" placeholder="उदा: वातावरण कर / अन्य जरिवाना">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="extraAmountInput">थप रकम (Extra Amount in Rs.)</label>
+                        <input type="number" id="extraAmountInput" placeholder="उदा: 500" value="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expiryInput">नवीकरण म्याद सकिएको मिति (BS)</label>
+                        <input type="text" id="expiryInput" placeholder="YYYY-MM-DD" value="2081-04-01">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paymentInput">कर बुझाउने मिति (BS)</label>
+                        <input type="text" id="paymentInput" placeholder="YYYY-MM-DD">
+                    </div>
+                </div>
+
+                <button class="btn-submit" onclick="calculateTax()">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    कर हिसाब गर्नुहोस्
+                </button>
+            </div>
         </div>
     </div>
 
+    <!-- TAB 2: JAACHPASS CALCULATOR -->
+    <div id="jaachpassTab" class="tab-content">
+        <div class="app-card">
+            <div class="card-header">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                जाँचपास तथा प्रदूषण दस्तुर हिसाब (नियम ५, १६ र १७ अनुसार)
+            </div>
+            <div class="card-body">
+                <div class="form-grid">
+                    <div class="form-group full-span">
+                        <label for="jpVehicleCategory">सवारी वर्गीकरण (नियम ५ अनुसार)</label>
+                        <select id="jpVehicleCategory" onchange="updateJaachpassBaseFee()">
+                            <option value="heavy">ठूला सवारी (बस, ट्रक, ट्रिपर, ठूला मेसिनरी)</option>
+                            <option value="medium_small" selected>मझौला र साना सवारी (कार, जिप, भ्यान, पिकअप, मिनीबस)</option>
+                            <option value="two_three_wheeler">मोटरसाइकल / स्कुटर / तीन पाङ्ग्रे (टेम्पो, अटो)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jpPeriod">जाँचपासको प्रकार (अवधि)</label>
+                        <select id="jpPeriod" onchange="updateJaachpassBaseFee()">
+                            <option value="half_yearly" selected>अर्धवार्षिक (६ महिना)</option>
+                            <option value="yearly">वार्षिक (अर्धवार्षिक दस्तुरको दोब्बर)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jpBaseFee">मूल जाँचपास दस्तुर (Rs.)</label>
+                        <input type="number" id="jpBaseFee" value="500" readonly style="background-color: #E2E8F0; cursor: not-allowed;">
+                    </div>
+
+                    <div class="form-group full-span">
+                        <label for="jpDelayMonths">जाँचपास म्याद नाघेको अवधि (जरिवाना नियम १६ र १७ बमोजिम)</label>
+                        <select id="jpDelayMonths">
+                            <option value="0">म्याद भित्रै (कुनै जरिवाना छैन)</option>
+                            <option value="1">तोकिएको समयपछि १ महिना सम्म (रु. ५००)</option>
+                            <option value="2">१ महिना देखि २ महिना सम्म</option>
+                            <option value="3">२ महिना देखि ३ महिना सम्म</option>
+                            <option value="5">३ महिना देखि ५ महिना सम्म</option>
+                            <option value="6">५ महिना भन्दा माथि</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="btn-submit" onclick="calculateJaachpass()">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    जाँचपास दस्तुर र जरिवाना हिसाब गर्नुहोस्
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESULT INVOICE PANEL -->
     <div id="resultBox" class="app-card result-card">
-        <div class="card-header">
+        <div class="card-header" id="resultHeaderTitle">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-            कर हिसाब विवरण (Tax Assessment Invoice)
+            कर तथा राजस्व विवरण (Assessment Invoice)
         </div>
         <div class="card-body">
             
             <div class="invoice-meta">
                 <span id="metaVehicleNum">सवारी साधन नं: -</span>
-                <span id="metaDateInfo">कर बुझाउने मिति: -</span>
+                <span id="metaDateInfo">भुक्तानी मिति: -</span>
             </div>
 
             <div class="table-responsive">
                 <table>
-                    <thead>
-                        <tr>
-                            <th>आर्थिक वर्ष</th>
-                            <th class="text-right">वार्षिक मूल कर</th>
-                            <th class="text-right">नवीकरण दस्तुर</th>
-                            <th class="text-right">आयकर (भाडा)</th>
-                            <th class="text-right">जम्मा</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody"></tbody>
-                    <tfoot id="tableFooter">
-                        <tr>
-                            <td>कर तथा दस्तुर उप-जम्मा:</td>
-                            <td class="text-right" id="totalTaxCell">Rs. 0</td>
-                            <td class="text-right" id="totalRenewalCell">Rs. 0</td>
-                            <td class="text-right" id="totalIncomeTaxCell">Rs. 0</td>
-                            <td class="text-right" id="totalRowGrandCell" style="color: var(--gov-blue); font-size: 16px;">Rs. 0</td>
-                        </tr>
-                        <!-- थप शीर्षक तथा रकमको लागि डाइनामिक रो -->
-                        <tr id="extraFeeRow" style="display: none; background-color: #FEF3C7; font-weight: 700;">
-                            <td colspan="4" id="extraFeeTitleDisplay">थप शुल्क:</td>
-                            <td class="text-right" id="extraFeeValDisplay" style="color: #B45309;">Rs. 0</td>
-                        </tr>
-                    </tfoot>
+                    <thead id="resultTHead"></thead>
+                    <tbody id="resultTBody"></tbody>
+                    <tfoot id="resultTFoot"></tfoot>
                 </table>
             </div>
 
@@ -520,6 +562,20 @@
 </footer>
 
 <script>
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+        if(tabId === 'taxTab') {
+            document.querySelectorAll('.tab-btn')[0].classList.add('active');
+        } else {
+            document.querySelectorAll('.tab-btn')[1].classList.add('active');
+        }
+
+        document.getElementById(tabId).classList.add('active');
+        document.getElementById('resultBox').style.display = 'none';
+    }
+
     function getTodayNepaliDate() {
         const today = new Date();
         const refAD = new Date(2024, 3, 13);
@@ -567,6 +623,7 @@
     document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('paymentInput').value = getTodayNepaliDate();
         handleCategoryChange();
+        updateJaachpassBaseFee();
     });
 
     function getRenewalFee(category) {
@@ -574,26 +631,21 @@
              'r_truck_bus', 'r_heavy_machinery', 'r_oil_gas_container'].includes(category)) {
             return 1000;
         }
-        
         if (['p_minitruck_bus', 'p_minitipper', 'r_minitruck_bus', 'r_minitipper'].includes(category)) {
             return 700;
         }
-
         if (['p_car_jeep', 'p_three_wheeler', 'p_tractor', 'p_power_tiller', 'p_car_electric',
              'r_car_jeep', 'r_three_wheeler', 'r_tractor', 'r_power_tiller', 'r_car_electric'].includes(category)) {
             return 500;
         }
-
         if (['p_bike_fuel', 'p_bike_electric'].includes(category)) {
             return 300;
         }
-
         return 0;
     }
 
     function handleCategoryChange() {
         const category = document.getElementById('vehicleCategory').value;
-        
         document.getElementById('renewalFeeInput').value = getRenewalFee(category);
 
         document.getElementById('ccGroup').style.display = 'none';
@@ -619,7 +671,6 @@
             if (cc <= 650) return 20000;
             return 30000;
         }
-        
         if (category === 'p_car_jeep') {
             const cc = parseInt(document.getElementById('ccInput').value) || 0;
             if (cc <= 1000) return 22000;
@@ -630,7 +681,6 @@
             if (cc <= 3500) return 60000;
             return 65000;
         }
-
         if (category === 'p_bike_electric') {
             const watt = parseInt(document.getElementById('wattInput').value) || 0;
             if (watt <= 50) return 1000;
@@ -639,7 +689,6 @@
             if (watt <= 1500) return 2500;
             return 3000;
         }
-
         if (category === 'p_car_electric') {
             const kw = parseInt(document.getElementById('kwInput').value) || 0;
             if (kw <= 50) return 12000;
@@ -648,7 +697,6 @@
             if (kw <= 200) return 27000;
             return 32000;
         }
-
         if (category === 'r_car_jeep') {
             const cc = parseInt(document.getElementById('ccInput').value) || 0;
             if (cc <= 1000) return 11000;
@@ -660,7 +708,6 @@
             if (cc <= 4000) return 19000;
             return 22000;
         }
-
         if (category === 'r_car_electric') {
             const kw = parseInt(document.getElementById('kwInput').value) || 0;
             if (kw <= 50) return 10000;
@@ -671,23 +718,12 @@
         }
 
         const documentFixedRates = {
-            'p_machinery_heavy': 40000,
-            'p_tipper_container': 42000,
-            'p_minitipper': 30000,
-            'p_three_wheeler': 6000,
-            'p_tractor': 11000,
-            'p_power_tiller': 4500,
-            'p_minitruck_bus': 27000,
-            'p_truck_bus': 35000,
-            'p_oil_gas': 35000,
-            'r_heavy_machinery': 22000,
-            'r_minitipper': 21000,
-            'r_three_wheeler': 6000,
-            'r_tractor': 8000,
-            'r_power_tiller': 4500,
-            'r_minitruck_bus': 15000 * 0.40,
-            'r_truck_bus': 20000 * 0.40,
-            'r_oil_gas_container': 22000
+            'p_machinery_heavy': 40000, 'p_tipper_container': 42000, 'p_minitipper': 30000,
+            'p_three_wheeler': 6000, 'p_tractor': 11000, 'p_power_tiller': 4500,
+            'p_minitruck_bus': 27000, 'p_truck_bus': 35000, 'p_oil_gas': 35000,
+            'r_heavy_machinery': 22000, 'r_minitipper': 21000, 'r_three_wheeler': 6000,
+            'r_tractor': 8000, 'r_power_tiller': 4500, 'r_minitruck_bus': 6000,
+            'r_truck_bus': 8000, 'r_oil_gas_container': 22000
         };
 
         return documentFixedRates[category] || 0;
@@ -708,11 +744,9 @@
         if (category === 'r_minitruck_bus') return 9500; 
         if (category === 'r_minitipper') return 11000; 
         if (category === 'r_truck_bus') return 12500; 
-        if (category === 'r_heavy_machinery') return 17500; 
-        if (category === 'r_oil_gas_container') return 17500; 
-        if (category === 'r_tractor') return 3500; 
+        if (category === 'r_heavy_machinery' || category === 'r_oil_gas_container') return 17500; 
+        if (category === 'r_tractor' || category === 'r_three_wheeler') return 3500; 
         if (category === 'r_power_tiller') return 3000; 
-        if (category === 'r_three_wheeler') return 3500; 
 
         if (category === 'r_car_electric') {
             const kw = parseInt(document.getElementById('kwInput').value) || 0;
@@ -729,13 +763,13 @@
         return (month >= 4) ? year : year - 1;
     }
 
+    /* ---------------- TAX CALCULATION LOGIC ---------------- */
     function calculateTax() {
         const vehNum = document.getElementById('vehicleNumber').value.trim();
         const category = document.getElementById('vehicleCategory').value;
         const expiry = document.getElementById('expiryInput').value;
         const payment = document.getElementById('paymentInput').value;
         const inputRenewalFee = parseFloat(document.getElementById('renewalFeeInput').value) || 0;
-
         const extraTitle = document.getElementById('extraTitleInput').value.trim();
         const extraAmount = parseFloat(document.getElementById('extraAmountInput').value) || 0;
 
@@ -747,6 +781,18 @@
         document.getElementById('metaVehicleNum').innerText = `सवारी साधन नं: ${vehNum ? vehNum : 'उल्लेख नगरिएको'}`;
         document.getElementById('metaDateInfo').innerText = `कर बुझाउने मिति: ${payment}`;
 
+        document.getElementById('resultHeaderTitle').innerText = "सवारी कर हिसाब विवरण (Tax Assessment Invoice)";
+
+        document.getElementById('resultTHead').innerHTML = `
+            <tr>
+                <th>आर्थिक वर्ष</th>
+                <th class="text-right">वार्षिक मूल कर</th>
+                <th class="text-right">नवीकरण दस्तुर</th>
+                <th class="text-right">आयकर (भाडा)</th>
+                <th class="text-right">जम्मा</th>
+            </tr>
+        `;
+
         const annualTax = getTaxRateFromDocument(category);
         const baseIncomeTax = getBaseIncomeTaxRate(category);
 
@@ -756,41 +802,25 @@
         const initialExpiredFY = getFYStartYear(expYear, expMonth);
         const currentPaymentFY = getFYStartYear(payYear, payMonth);
 
-        const tbody = document.getElementById('tableBody');
+        const tbody = document.getElementById('resultTBody');
         tbody.innerHTML = ''; 
 
         if (initialExpiredFY === currentPaymentFY && (expYear > payYear || (expYear === payYear && expMonth > payMonth) || (expYear === payYear && expMonth === payMonth && expDay >= payDay))) {
             tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #15803d; font-weight: 700; padding: 20px;">यस आर्थिक वर्षको कर पहिले नै चुक्ता भइसकेको छ।</td></tr>';
             
-            document.getElementById('totalTaxCell').innerText = 'Rs. 0';
-            document.getElementById('totalRenewalCell').innerText = 'Rs. 0';
-            document.getElementById('totalIncomeTaxCell').innerText = 'Rs. 0';
-            document.getElementById('totalRowGrandCell').innerText = 'Rs. 0';
-
-            if (extraAmount > 0) {
-                document.getElementById('extraFeeRow').style.display = 'table-row';
-                document.getElementById('extraFeeTitleDisplay').innerText = `थप शुल्क/रकम (${extraTitle || 'अन्य'}):`;
-                document.getElementById('extraFeeValDisplay').innerText = `Rs. ${extraAmount.toLocaleString()}`;
-                document.getElementById('grandTotalText').innerText = `Rs. ${extraAmount.toLocaleString()}/-`;
-            } else {
-                document.getElementById('extraFeeRow').style.display = 'none';
-                document.getElementById('grandTotalText').innerText = `Rs. 0/-`;
-            }
-
+            document.getElementById('resultTFoot').innerHTML = '';
+            document.getElementById('grandTotalText').innerText = extraAmount > 0 ? `Rs. ${extraAmount.toLocaleString()}/-` : `Rs. 0/-`;
             document.getElementById('resultBox').style.display = 'block';
             return;
         }
 
-        let totalTax = 0;
-        let totalRenewal = 0;
-        let totalIncomeTax = 0;
+        let totalTax = 0, totalRenewal = 0, totalIncomeTax = 0;
 
         for (let fy = initialExpiredFY; fy <= currentPaymentFY; fy++) {
             let fyLabel = `${fy}/${(fy + 1) % 100}`;
             let fyTax = annualTax;
             let currentYearRenewal = inputRenewalFee;
             let currentYearIncomeTax = baseIncomeTax;
-
             let isPreviousYear = (fy < currentPaymentFY);
             let fineBadge = '';
 
@@ -800,7 +830,6 @@
             }
 
             let rowTotal = fyTax + currentYearRenewal + currentYearIncomeTax;
-
             totalTax += fyTax;
             totalRenewal += currentYearRenewal;
             totalIncomeTax += currentYearIncomeTax;
@@ -821,21 +850,105 @@
         const subTotal = totalTax + totalRenewal + totalIncomeTax;
         const grandTotal = subTotal + extraAmount;
 
-        document.getElementById('totalTaxCell').innerText = `Rs. ${totalTax.toLocaleString()}`;
-        document.getElementById('totalRenewalCell').innerText = `Rs. ${totalRenewal.toLocaleString()}`;
-        document.getElementById('totalIncomeTaxCell').innerText = `Rs. ${totalIncomeTax.toLocaleString()}`;
-        document.getElementById('totalRowGrandCell').innerText = `Rs. ${subTotal.toLocaleString()}`;
+        let footRows = `
+            <tr>
+                <td>कर तथा दस्तुर उप-जम्मा:</td>
+                <td class="text-right">Rs. ${totalTax.toLocaleString()}</td>
+                <td class="text-right">Rs. ${totalRenewal.toLocaleString()}</td>
+                <td class="text-right">Rs. ${totalIncomeTax.toLocaleString()}</td>
+                <td class="text-right" style="color: var(--gov-blue); font-size: 16px;">Rs. ${subTotal.toLocaleString()}</td>
+            </tr>
+        `;
 
         if (extraAmount > 0) {
-            document.getElementById('extraFeeRow').style.display = 'table-row';
-            document.getElementById('extraFeeTitleDisplay').innerText = `थप शुल्क/रकम (${extraTitle || 'अन्य'}):`;
-            document.getElementById('extraFeeValDisplay').innerText = `Rs. ${extraAmount.toLocaleString()}`;
-        } else {
-            document.getElementById('extraFeeRow').style.display = 'none';
+            footRows += `
+                <tr style="background-color: #FEF3C7; font-weight: 700;">
+                    <td colspan="4">थप शुल्क/रकम (${extraTitle || 'अन्य'}):</td>
+                    <td class="text-right" style="color: #B45309;">Rs. ${extraAmount.toLocaleString()}</td>
+                </tr>
+            `;
         }
 
+        document.getElementById('resultTFoot').innerHTML = footRows;
         document.getElementById('grandTotalText').innerText = `Rs. ${grandTotal.toLocaleString()}/-`;
+        document.getElementById('resultBox').style.display = 'block';
+        document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* ---------------- JAACHPASS LOGIC (नियम ५, १६ र १७ अनुसार) ---------------- */
+    function updateJaachpassBaseFee() {
+        const cat = document.getElementById('jpVehicleCategory').value;
+        const period = document.getElementById('jpPeriod').value;
         
+        let halfYearlyFee = 0;
+        if (cat === 'heavy') halfYearlyFee = 700;
+        else if (cat === 'medium_small') halfYearlyFee = 500;
+        else if (cat === 'two_three_wheeler') halfYearlyFee = 200;
+
+        const finalFee = (period === 'yearly') ? (halfYearlyFee * 2) : halfYearlyFee;
+        document.getElementById('jpBaseFee').value = finalFee;
+    }
+
+    function calculateJaachpass() {
+        const cat = document.getElementById('jpVehicleCategory').value;
+        const baseFee = parseFloat(document.getElementById('jpBaseFee').value) || 0;
+        const delay = parseInt(document.getElementById('jpDelayMonths').value) || 0;
+
+        let fine = 0;
+
+        // नियम १६: ठूला, मझौला र साना सवारी साधनको जरिवाना
+        if (cat === 'heavy' || cat === 'medium_small') {
+            if (delay === 1) fine = 500;
+            else if (delay === 2) fine = 1500;
+            else if (delay === 3) fine = 2500;
+            else if (delay === 5) fine = 3500;
+            else if (delay === 6) fine = 5000;
+        } 
+        // नियम १७: तीन पाङ्ग्रे र दुई पाङ्ग्रे सवारी साधनको जरिवाना
+        else if (cat === 'two_three_wheeler') {
+            if (delay === 1) fine = 500;
+            else if (delay === 2) fine = 1000;
+            else if (delay === 3) fine = 1500;
+            else if (delay === 5) fine = 2000;
+            else if (delay === 6) fine = 2500;
+        }
+
+        const grandTotal = baseFee + fine;
+
+        document.getElementById('metaVehicleNum').innerText = `सवारी साधन जाँचपास बिल`;
+        document.getElementById('metaDateInfo').innerText = `मिति: ${getTodayNepaliDate()}`;
+
+        document.getElementById('resultHeaderTitle').innerText = "जाँचपास दस्तुर तथा जरिवाना विवरण (Vehicle Inspection Invoice)";
+        
+        document.getElementById('resultTHead').innerHTML = `
+            <tr>
+                <th style="text-align: left;">विवरण तथा शीर्षक</th>
+                <th class="text-right">नियम / व्यवस्था</th>
+                <th class="text-right">रकम (Rs.)</th>
+            </tr>
+        `;
+
+        document.getElementById('resultTBody').innerHTML = `
+            <tr>
+                <td><strong>जाँचपास दस्तुर (${document.getElementById('jpPeriod').options[document.getElementById('jpPeriod').selectedIndex].text})</strong></td>
+                <td class="text-right">नियम ५ अनुसार</td>
+                <td class="text-right">Rs. ${baseFee.toLocaleString()}</td>
+            </tr>
+            <tr>
+                <td><strong>म्याद नाघेको जरिवाना</strong></td>
+                <td class="text-right">नियम ${cat === 'two_three_wheeler' ? '१७' : '१६'} अनुसार</td>
+                <td class="text-right" style="color: var(--gov-red); font-weight:700;">Rs. ${fine.toLocaleString()}</td>
+            </tr>
+        `;
+
+        document.getElementById('resultTFoot').innerHTML = `
+            <tr style="background-color: #F8FAFC; font-weight: 800;">
+                <td colspan="2">जम्मा जाँचपास दस्तुर तथा जरिवाना:</td>
+                <td class="text-right" style="color: var(--gov-blue); font-size: 16px;">Rs. ${grandTotal.toLocaleString()}</td>
+            </tr>
+        `;
+
+        document.getElementById('grandTotalText').innerText = `Rs. ${grandTotal.toLocaleString()}/-`;
         document.getElementById('resultBox').style.display = 'block';
         document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth' });
     }
