@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>यातायात व्यवस्था कार्यालय - राजस्व व्यवस्थापन प्रणाली (VRS)</title>
+    <title>यातायात व्यवस्था कार्यालय, बागलुङ (०२) - VRS राजस्व व्यवस्थापन प्रणाली</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -44,7 +44,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Mukta', sans-serif;
-            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
         }
 
         body {
@@ -55,7 +55,7 @@
             flex-direction: column;
         }
 
-        /* Top Bar Header */
+        /* Top Government Header */
         .top-navbar {
             background: var(--card-bg);
             border-bottom: 3px solid var(--gov-red);
@@ -77,7 +77,7 @@
         }
 
         [data-theme="dark"] .nav-brand { color: #93C5FD; }
-        .nav-brand img { width: 38px; height: auto; }
+        .nav-brand img { width: 40px; height: auto; }
 
         .nav-controls {
             display: flex;
@@ -114,22 +114,22 @@
         }
         .icon-btn:hover { border-color: var(--gov-blue); }
 
-        /* Main Layout */
+        /* App Layout */
         .workspace {
             display: flex;
             flex: 1;
             overflow: hidden;
         }
 
-        /* Left Sidebar Menu */
+        /* Left Navigation Sidebar */
         .sidebar {
-            width: 85px;
+            width: 90px;
             background: var(--gov-blue);
             display: flex;
             flex-direction: column;
             align-items: center;
             padding-top: 20px;
-            gap: 14px;
+            gap: 16px;
             box-shadow: 2px 0 6px rgba(0,0,0,0.1);
         }
 
@@ -138,19 +138,19 @@
             flex-direction: column;
             align-items: center;
             color: #FFFFFF;
-            font-size: 11.5px;
+            font-size: 12px;
             font-weight: 600;
             cursor: pointer;
-            opacity: 0.72;
-            padding: 10px 4px;
+            opacity: 0.75;
+            padding: 12px 6px;
             border-radius: 8px;
-            width: 90%;
+            width: 88%;
             text-align: center;
             transition: all 0.2s ease;
         }
 
         .sidebar-item .sidebar-icon {
-            font-size: 24px;
+            font-size: 26px;
             margin-bottom: 4px;
             display: block;
         }
@@ -163,14 +163,14 @@
 
         .content-area {
             flex: 1;
-            padding: 25px;
+            padding: 24px;
             overflow-y: auto;
-            max-width: 1050px;
+            max-width: 1100px;
             margin: 0 auto;
             width: 100%;
         }
 
-        /* Top Module Tabs */
+        /* Module Tabs */
         .tab-bar {
             display: flex;
             gap: 10px;
@@ -205,12 +205,12 @@
         .tab-pane { display: none; }
         .tab-pane.active { display: block; }
 
-        /* Form Controls & Layout */
+        /* Form Styling */
         .form-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 8px;
-            padding: 26px;
+            padding: 24px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             margin-bottom: 30px;
         }
@@ -252,7 +252,7 @@
 
         input, select {
             width: 100%;
-            padding: 10px 14px;
+            padding: 10px 12px;
             border: 1px solid var(--card-border);
             border-radius: 6px;
             font-size: 14.5px;
@@ -297,12 +297,27 @@
 
         .btn-gov:hover { background: var(--gov-blue-dark); }
 
-        /* VRS Official Receipt Layout */
+        .info-note {
+            background: rgba(0, 51, 102, 0.05);
+            border-left: 4px solid var(--gov-blue);
+            padding: 10px 14px;
+            font-size: 13.5px;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        [data-theme="dark"] .info-note {
+            background: rgba(147, 197, 253, 0.1);
+            border-left-color: #93C5FD;
+        }
+
+        /* DOTM Official VRS Receipt */
         .receipt-container {
             background: var(--card-bg);
             border: 2px solid var(--card-border);
             border-radius: 8px;
-            padding: 35px;
+            padding: 32px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.06);
             display: none;
             position: relative;
@@ -334,7 +349,7 @@
             line-height: 1.9;
             margin-bottom: 25px;
             background: var(--input-bg);
-            padding: 15px 20px;
+            padding: 16px 20px;
             border-radius: 6px;
             border: 1px solid var(--card-border);
         }
@@ -376,7 +391,7 @@
             text-align: right;
             margin-top: 50px;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 14.5px;
             line-height: 1.6;
         }
 
@@ -436,8 +451,9 @@
         <span>यातायात व्यवस्था कार्यालय, बागलुङ (०२) - VRS</span>
     </div>
     <div class="nav-controls">
-        <span class="control-badge">बागलुङ ०२</span>
-        <span class="control-badge">VRS 4.2</span>
+        <span class="control-badge">गण्डकी प्रदेश</span>
+        <span class="control-badge">494267b8</span>
+        <span class="control-badge">VRS 4.5</span>
         <button class="icon-btn" onclick="toggleTheme()" id="themeToggleBtn">🌙 Mode</button>
     </div>
 </header>
@@ -445,15 +461,15 @@
 <div class="workspace">
     <!-- Clickable Left Sidebar Menu -->
     <aside class="sidebar">
-        <div class="sidebar-item active" id="sbTax" onclick="switchModule('taxModule')" title="सवारी साधन कर नवीकरण">
+        <div class="sidebar-item active" id="sbTax" onclick="switchModule('taxModule')" title="सवारी साधन कर तथा नवीकरण">
             <span class="sidebar-icon">🚗</span>
             <span>कर/नवीकरण</span>
         </div>
-        <div class="sidebar-item" id="sbJaachpass" onclick="switchModule('jaachpassModule')" title="जाँचपास">
+        <div class="sidebar-item" id="sbJaachpass" onclick="switchModule('jaachpassModule')" title="जाँचपास तथा प्रदूषण">
             <span class="sidebar-icon">📋</span>
             <span>जाँचपास</span>
         </div>
-        <div class="sidebar-item" id="sbRoute" onclick="switchModule('routeModule')" title="रूट पर्मिट">
+        <div class="sidebar-item" id="sbRoute" onclick="switchModule('routeModule')" title="रूट इजाजत दस्तुर">
             <span class="sidebar-icon">🛣️</span>
             <span>रूट पर्मिट</span>
         </div>
@@ -462,29 +478,112 @@
     <div class="content-area">
         <!-- Module Tabs Navigation -->
         <div class="tab-bar">
-            <button class="tab-btn active" id="tbTax" onclick="switchModule('taxModule')">🚗 सवारी साधन कर तथा नवीकरण</button>
-            <button class="tab-btn" id="tbJaachpass" onclick="switchModule('jaachpassModule')">📋 जाँचपास (नियम ५, १६, १७)</button>
-            <button class="tab-btn" id="tbRoute" onclick="switchModule('routeModule')">🛣️ रूट इजाजत प्रणाली</button>
+            <button class="tab-btn active" id="tbTax" onclick="switchModule('taxModule')">🚗 सवारी साधन कर तथा नवीकरण (गण्डकी प्रदेश नियमावली)</button>
+            <button class="tab-btn" id="tbJaachpass" onclick="switchModule('jaachpassModule')">📋 जाँचपास दस्तुर (नियम ५, १६, १७)</button>
+            <button class="tab-btn" id="tbRoute" onclick="switchModule('routeModule')">🛣️ रूट इजाजत प्रणाली (अनुसूची २ र ४)</button>
         </div>
 
         <!-- MODULE 1: VEHICLE TAX & RENEWAL -->
         <div id="taxModule" class="tab-pane active">
             <div class="form-card">
-                <div class="form-card-header">🚗 सवारी कर तथा नवीकरण प्रविष्टि</div>
+                <div class="form-card-header">🚗 सवारी कर, नवीकरण तथा आयकर गणना प्रविष्टि</div>
+
                 <div class="form-grid">
                     <div class="form-group full-span">
-                        <label>सवारी नम्बर</label>
-                        <input type="text" id="vehicleNumber" value="" placeholder="उदा: ध १ प १२३४">
-                    </div>
-                    <div class="form-group full-span">
-                        <label>सवारी साधनको वर्ग (६०% छूट भाडाको बसमा मात्र)</label>
-                        <select id="vehicleCategory">
-                            <option value="p_bike" selected>निजी मोटरसाइकल / स्कुटर (कर: रु. ५,००० | नवीकरण: रु. ३००)</option>
-                            <option value="p_car">निजी कार / जिप / भ्यान (कर: रु. १५,००० | नवीकरण: रु. ५००)</option>
-                            <option value="r_bus">भाडाको बस / मिनीबस (६०% कर छूट लागू)</option>
-                            <option value="r_truck">भाडाको ट्रक / मिनीट्रक (छूट लागू नहुने)</option>
+                        <label>सवारी साधनको स्वामित्त्व / प्रयोजन प्रकार (Private vs Commercial)</label>
+                        <select id="vehicleOwnership" onchange="handleOwnershipChange()">
+                            <option value="private" selected>१. निजी सवारी साधन (Private Vehicle)</option>
+                            <option value="commercial">२. भाडाको/सार्वजनिक सवारी साधन (Commercial / Public Vehicle)</option>
                         </select>
                     </div>
+
+                    <div class="form-group full-span">
+                        <label>सवारी दर्ता नम्बर</label>
+                        <input type="text" id="vehicleNumber" value="" placeholder="उदा: ध १ प १२३४ वा ग २ ख ५६७८">
+                    </div>
+
+                    <!-- Private Vehicle Rates Dropdown -->
+                    <div class="form-group full-span" id="privateCategoryGroup">
+                        <label>निजी सवारी वर्ग र इन्जिन क्षमता (CC / Watt / kW)</label>
+                        <select id="privateCategory">
+                            <!-- Fuel Bike -->
+                            <option value="p_bike_125">मोटरसाइकल / स्कुटर (125cc सम्म) - कर: रु. ३,००० | नवीकरण: रु. ३००</option>
+                            <option value="p_bike_150">मोटरसाइकल / स्कुटर (126cc - 150cc) - कर: रु. ५,००० | नवीकरण: रु. ३००</option>
+                            <option value="p_bike_225">मोटरसाइकल / स्कुटर (151cc - 225cc) - कर: रु. ६,५०० | नवीकरण: रु. ३००</option>
+                            <option value="p_bike_400">मोटरसाइकल / स्कुटर (226cc - 400cc) - कर: रु. ११,००० | नवीकरण: रु. ३००</option>
+                            <option value="p_bike_650">मोटरसाइकल / स्कुटर (401cc - 650cc) - कर: रु. २०,००० | नवीकरण: रु. ३००</option>
+                            <option value="p_bike_above">मोटरसाइकल / स्कुटर (651cc भन्दा माथि) - कर: रु. ३०,००० | नवीकरण: रु. ३००</option>
+                            
+                            <!-- Electric Bike -->
+                            <option value="p_ebike_350">विद्युतीय मोटो/स्कुटर (50W - 350W) - कर: रु. १,००० | नवीकरण: रु. ३००</option>
+                            <option value="p_ebike_1000">विद्युतीय मोटो/स्कुटर (351W - 1000W) - कर: रु. १,५०० | नवीकरण: रु. ३००</option>
+                            <option value="p_ebike_1500">विद्युतीय मोटो/स्कुटर (1001W - 1500W) - कर: रु. २,००० | नवीकरण: रु. ३००</option>
+                            <option value="p_ebike_above">विद्युतीय मोटो/स्कुटर (1501W भन्दा माथि) - कर: रु. ३,००० | नवीकरण: रु. ३००</option>
+                            
+                            <!-- Fuel Car/Jeep/Van -->
+                            <option value="p_car_1000">कार, जीप, भ्यान, पिकअप (1000cc सम्म) - कर: रु. २२,००० | नवीकरण: रु. ५००</option>
+                            <option value="p_car_1500">कार, जीप, भ्यान, पिकअप (1001cc - 1500cc) - कर: रु. २५,००० | नवीकरण: रु. ५००</option>
+                            <option value="p_car_2000">कार, जीप, भ्यान, पिकअप (1501cc - 2000cc) - कर: रु. २७,००० | नवीकरण: रु. ५००</option>
+                            <option value="p_car_2500">कार, जीप, भ्यान, पिकअप (2001cc - 2500cc) - कर: रु. ३७,००० | नवीकरण: रु. ५००</option>
+                            <option value="p_car_3000">कार, जीप, भ्यान, पिकअप (2501cc - 3000cc) - कर: रु. ५०,००० | नवीकरण: रु. ५००</option>
+                            <option value="p_car_3500">कार, जीप, भ्यान, पिकअप (3001cc - 3500cc) - कर: रु. ६०,००० | नवीकरण: रु. ५००</option>
+                            <option value="p_car_above">कार, जीप, भ्यान, पिकअप (3501cc भन्दा माथि) - कर: रु. ६५,००० | नवीकरण: रु. ५००</option>
+                            
+                            <!-- Electric Car/Jeep/Van -->
+                            <option value="p_ecar_50">विद्युतीय कार/जिप/भ्यान (50kW सम्म) - कर: रु. १२,००० | नवीकरण: रु. ५००</option>
+                            <option value="p_ecar_100">विद्युतीय कार/जिप/भ्यान (51kW - 100kW) - कर: रु. १७,००० | नवीकरण: रु. ५००</option>
+                            <option value="p_ecar_150">विद्युतीय कार/जिप/भ्यान (101kW - 150kW) - कर: रु. २२,००० | नवीकरण: रु. ५००</option>
+                            <option value="p_ecar_200">विद्युतीय कार/जिप/भ्यान (151kW - 200kW) - कर: रु. २७,००० | नवीकरण: रु. ५००</option>
+                            <option value="p_ecar_above">विद्युतीय कार/जिप/भ्यान (201kW भन्दा माथि) - कर: रु. ३२,००० | नवीकरण: रु. ५००</option>
+                            
+                            <!-- Other Private Heavy -->
+                            <option value="p_dozer">डोजर / एक्साभेटर / क्रेन - कर: रु. ४०,००० | नवीकरण: रु. १,०००</option>
+                            <option value="p_tripper">ट्रिपर / कन्टेनर - कर: रु. ४२,००० | नवीकरण: रु. १,०००</option>
+                            <option value="p_minitripper">मिनीट्रिपर - कर: रु. ३०,००० | नवीकरण: रु. ७००</option>
+                            <option value="p_auto">थ्री ह्वीलर / अटो / टेम्पो - कर: रु. ६,००० | नवीकरण: रु. ५००</option>
+                            <option value="p_tractor">ट्र्याक्टर - कर: रु. ११,००० | नवीकरण: रु. ५००</option>
+                            <option value="p_tiller">पावर ट्रिलर - कर: रु. ४,५०० | नवीकरण: रु. ५००</option>
+                            <option value="p_minitruck">मिनीट्रक / मिनीबस - कर: रु. २७,००० | नवीकरण: रु. ७००</option>
+                            <option value="p_truck">ट्रक / बस - कर: रु. ३५,००० | नवीकरण: रु. १,०००</option>
+                            <option value="p_tanker">तेल ट्याङ्कर / ग्याँस बुलेट - कर: रु. ३५,००० | नवीकरण: रु. १,०००</option>
+                        </select>
+                    </div>
+
+                    <!-- Commercial Vehicle Rates Dropdown -->
+                    <div class="form-group full-span" id="commercialCategoryGroup" style="display: none;">
+                        <label>भाडाका सवारी साधन वर्ग (इन्जिन क्षमता, कर, आयकर र ६०% छूट)</label>
+                        <select id="commercialCategory">
+                            <!-- Commercial Fuel Cars/Taxis -->
+                            <option value="c_car_1000">भाडाका कार, जीप, ट्याक्सी (1000cc सम्म) - कर: रु ११,००० | आयकर: रु ६,५०० | नवीकरण: रु ५००</option>
+                            <option value="c_car_1500">भाडाका कार, जीप, ट्याक्सी (1001cc - 1500cc) - कर: रु १२,५०० | आयकर: रु ६,५०० | नवीकरण: रु ५००</option>
+                            <option value="c_car_2000">भाडाका कार, जीप, ट्याक्सी (1501cc - 2000cc) - कर: रु १३,५०० | आयकर: रु ७,००० | नवीकरण: रु ५००</option>
+                            <option value="c_car_2500">भाडाका कार, जीप, ट्याक्सी (2001cc - 2500cc) - कर: रु १४,५०० | आयकर: रु ७,५०० | नवीकरण: रु ५००</option>
+                            <option value="c_car_3000">भाडाका कार, जीप, ट्याक्सी (2501cc - 3000cc) - कर: रु १६,५०० | आयकर: रु ७,५०० | नवीकरण: रु ५००</option>
+                            <option value="c_car_3500">भाडाका कार, जीप, ट्याक्सी (3001cc - 3500cc) - कर: रु १७,५०० | आयकर: रु ९,५०० | नवीकरण: रु ५००</option>
+                            <option value="c_car_4000">भाडाका कार, जीप, ट्याक्सी (3501cc - 4000cc) - कर: रु १९,००० | आयकर: रु ९,५०० | नवीकरण: रु ५००</option>
+                            <option value="c_car_above">भाडाका कार, जीप, ट्याक्सी (4001cc भन्दा माथि) - कर: रु २२,००० | आयकर: रु ११,००० | नवीकरण: रु ५००</option>
+
+                            <!-- Commercial Bus (60% Discount Applied) -->
+                            <option value="c_bus">भाडाका बस / मिनीबस [६०% कर छूट लागू] - मूल कर: रु ८,००० (छूट पछी रु ३,२००) | नवीकरण: रु १,००० | आयकर: रु ९,५००</option>
+
+                            <!-- Commercial Truck (No Discount) -->
+                            <option value="c_truck">भाडाका ट्रक / मिनीट्रक (छूट लागू नहुने) - कर: रु ८,००० | नवीकरण: रु १,००० | आयकर: रु १२,५००</option>
+
+                            <!-- Commercial Electric Cars/Taxis -->
+                            <option value="c_ecar_50">भाडाका विद्युतीय कार/ट्याक्सी (50kW सम्म) - कर: रु १०,००० | आयकर: रु ४,००० | नवीकरण: रु ५००</option>
+                            <option value="c_ecar_100">भाडाका विद्युतीय कार/ट्याक्सी (51kW - 100kW) - कर: रु १५,००० | आयकर: रु ५,००० | नवीकरण: रु ५००</option>
+                            <option value="c_ecar_150">भाडाका विद्युतीय कार/ट्याक्सी (101kW - 150kW) - कर: रु २०,००० | आयकर: रु ७,५०० | नवीकरण: रु ५००</option>
+                            <option value="c_ecar_200">भाडाका विद्युतीय कार/ट्याक्सी (151kW - 200kW) - कर: रु २५,००० | आयकर: रु ७,५०० | नवीकरण: रु ५००</option>
+                            <option value="c_ecar_above">भाडाका विद्युतीय कार/ट्याक्सी (201kW भन्दा माथि) - कर: रु ३०,००० | आयकर: रु ९,५०० | नवीकरण: रु ५००</option>
+
+                            <!-- Other Commercial Heavy -->
+                            <option value="c_dozer">भाडा डोजर / लोडर - कर: रु २२,००० | नवीकरण: रु १,००० | आयकर: रु १७,५००</option>
+                            <option value="c_tractor">भाडा ट्र्याक्टर - कर: रु ८,००० | नवीकरण: रु ५०० | आयकर: रु ३,५००</option>
+                            <option value="c_auto">भाडा थ्री ह्वीलर / टेम्पो - कर: रु ६,००० | नवीकरण: रु ५०० | आयकर: रु ३,५००</option>
+                            <option value="c_tiller">भाडा पावर ट्रिलर - कर: रु ४,५०० | नवीकरण: रु ५०० | आयकर: रु ३,०००</option>
+                        </select>
+                    </div>
+
                     <div class="form-group">
                         <label>नवीकरण म्याद सकिएको मिति (BS YYYY-MM-DD)</label>
                         <input type="text" id="expiryInput" value="2081-04-01" placeholder="YYYY-MM-DD">
@@ -494,14 +593,19 @@
                         <input type="text" id="paymentInput" value="2083-07-11" placeholder="YYYY-MM-DD">
                     </div>
                 </div>
-                <button class="btn-gov" onclick="calculateTaxReceipt()">🧮 कर हिसाब गरी रसिद तयार गर्नुहोस्</button>
+
+                <div class="info-note" id="busDiscountNotice" style="display:none;">
+                    💡 <strong>नियम सूचना:</strong> भाडाका बस/मिनीबस (Commercial Bus) मा प्रदेश नियमावली अनुसार सवारी साधन करमा ६०% छूट स्वतः हिसाब हुन्छ।
+                </div>
+
+                <button class="btn-gov" onclick="calculateTaxReceipt()">🧮 सवारी कर तथा नवीकरण रसिद तयार गर्नुहोस्</button>
             </div>
         </div>
 
         <!-- MODULE 2: JAACHPASS & POLLUTION -->
         <div id="jaachpassModule" class="tab-pane">
             <div class="form-card">
-                <div class="form-card-header">📋 जाँचपास तथा प्रदूषण दस्तुर (नियम ५, १६, १७)</div>
+                <div class="form-card-header">📋 जाँचपास तथा प्रदूषण दस्तुर प्रविष्टि (नियम ५, १६, १७)</div>
                 <div class="form-grid">
                     <div class="form-group full-span">
                         <label>सवारी वर्गीकरण (नियम ५ अनुसार)</label>
@@ -523,7 +627,7 @@
                         <input type="number" id="jpBaseFee" value="500" readonly style="opacity: 0.8; cursor: not-allowed;">
                     </div>
                     <div class="form-group">
-                        <label>म्याद सकिएको मिति (BS)</label>
+                        <label>म्याद सकिएको मिति (BS YYYY-MM-DD)</label>
                         <input type="text" id="jpExpiryInput" value="2082-10-01" placeholder="YYYY-MM-DD">
                     </div>
                     <div class="form-group">
@@ -555,7 +659,7 @@
                             <select id="routeAreaCategory">
                                 <option value="light_14">१४ सिट वा सो मुनिका हल्का सवारी / ट्र्याक्टर / पावर ट्रिलर</option>
                                 <option value="taxi">ट्याक्सी</option>
-                                <option value="tempo">ट्याम्पो</option>
+                                <option value="tempo">ट्याम्पो / ३ ह्वीलर</option>
                             </select>
                         </div>
                         <div class="form-group full-span">
@@ -585,7 +689,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>रूट म्याद सकिएको मिति (BS)</label>
+                        <label>रूट म्याद सकिएको मिति (BS YYYY-MM-DD)</label>
                         <input type="text" id="routeExpiryInput" value="2082-04-01" placeholder="YYYY-MM-DD">
                     </div>
                     <div class="form-group">
@@ -607,15 +711,15 @@
             <div class="receipt-actions">
                 <div class="receipt-title">नेपाल सरकार - राजस्व भुक्तानी रसिद (VRS Receipt)</div>
                 <div>
-                    <button class="icon-btn" onclick="window.print()">🖨️ प्रिन्ट गर्नुहोस्</button>
+                    <button class="icon-btn" onclick="window.print()">🖨️ रसिद प्रिन्ट गर्नुहोस्</button>
                 </div>
             </div>
 
             <div class="receipt-header-info">
                 <div>
-                    <p><strong>रसिद नम्बर:</strong> <span id="lblReceiptNo">420074724</span></p>
+                    <p><strong>रसिद नम्बर:</strong> <span id="lblReceiptNo">494267b8</span></p>
                     <p><strong>सवारी साधन नं:</strong> <span id="lblVehNo">ध १ प १२३४</span></p>
-                    <p><strong>भुक्तानी प्रकार:</strong> CASH / ONLINE</p>
+                    <p><strong>भुक्तानी प्रणाली:</strong> DOTM VRS Admin (NPS)</p>
                 </div>
                 <div>
                     <p><strong>कार्यालय:</strong> यातायात व्यवस्था कार्यालय, बागलुङ (०२)</p>
@@ -628,7 +732,7 @@
                 <thead>
                     <tr>
                         <th>क्र.सं.</th>
-                        <th>शिर्षक नं.</th>
+                        <th>संकेत/शिर्षक</th>
                         <th>विवरण</th>
                         <th>आर्थिक वर्ष</th>
                         <th class="text-right">मूल रकम</th>
@@ -642,10 +746,11 @@
 
             <div class="receipt-total" id="receiptGrandTotal">कुल जम्मा रु. ०/-</div>
 
+            <!-- Signature Box with Updated Text -->
             <div class="signature-box">
                 ...............................................<br>
                 <strong>यातायात व्यवस्था कार्यालय बागलुङ</strong><br>
-                <span style="font-size: 12px; color: var(--text-muted); font-weight: normal;">(राजस्व अधिकृत / फाँटवालाको दस्तखत)</span>
+                <span style="font-size: 13px; color: var(--text-muted); font-weight: normal;">(कार्यालयको सहीछाप / बुझिलिनेको नाम)</span>
             </div>
         </div>
 
@@ -653,14 +758,77 @@
 </div>
 
 <script>
-    // System Init Date: 2083-07-11
     const DEFAULT_BS_TODAY = "2083-07-11";
+
+    // RATES DATABASE (Gandaki Province Rules & Act)
+    const RATES = {
+        // PRIVATE
+        p_bike_125: { tax: 3000, renew: 300 },
+        p_bike_150: { tax: 5000, renew: 300 },
+        p_bike_225: { tax: 6500, renew: 300 },
+        p_bike_400: { tax: 11000, renew: 300 },
+        p_bike_650: { tax: 20000, renew: 300 },
+        p_bike_above: { tax: 30000, renew: 300 },
+
+        p_ebike_350: { tax: 1000, renew: 300 },
+        p_ebike_1000: { tax: 1500, renew: 300 },
+        p_ebike_1500: { tax: 2000, renew: 300 },
+        p_ebike_above: { tax: 3000, renew: 300 },
+
+        p_car_1000: { tax: 22000, renew: 500 },
+        p_car_1500: { tax: 25000, renew: 500 },
+        p_car_2000: { tax: 27000, renew: 500 },
+        p_car_2500: { tax: 37000, renew: 500 },
+        p_car_3000: { tax: 50000, renew: 500 },
+        p_car_3500: { tax: 60000, renew: 500 },
+        p_car_above: { tax: 65000, renew: 500 },
+
+        p_ecar_50: { tax: 12000, renew: 500 },
+        p_ecar_100: { tax: 17000, renew: 500 },
+        p_ecar_150: { tax: 22000, renew: 500 },
+        p_ecar_200: { tax: 27000, renew: 500 },
+        p_ecar_above: { tax: 32000, renew: 500 },
+
+        p_dozer: { tax: 40000, renew: 1000 },
+        p_tripper: { tax: 42000, renew: 1000 },
+        p_minitripper: { tax: 30000, renew: 700 },
+        p_auto: { tax: 6000, renew: 500 },
+        p_tractor: { tax: 11000, renew: 500 },
+        p_tiller: { tax: 4500, renew: 500 },
+        p_minitruck: { tax: 27000, renew: 700 },
+        p_truck: { tax: 35000, renew: 1000 },
+        p_tanker: { tax: 35000, renew: 1000 },
+
+        // COMMERCIAL
+        c_car_1000: { tax: 11000, income: 6500, renew: 500 },
+        c_car_1500: { tax: 12500, income: 6500, renew: 500 },
+        c_car_2000: { tax: 13500, income: 7000, renew: 500 },
+        c_car_2500: { tax: 14500, income: 7500, renew: 500 },
+        c_car_3000: { tax: 16500, income: 7500, renew: 500 },
+        c_car_3500: { tax: 17500, income: 9500, renew: 500 },
+        c_car_4000: { tax: 19000, income: 9500, renew: 500 },
+        c_car_above: { tax: 22000, income: 11000, renew: 500 },
+
+        c_bus: { tax: 8000, income: 9500, renew: 1000, discountPercent: 60 },
+        c_truck: { tax: 8000, income: 12500, renew: 1000 },
+
+        c_ecar_50: { tax: 10000, income: 4000, renew: 500 },
+        c_ecar_100: { tax: 15000, income: 5000, renew: 500 },
+        c_ecar_150: { tax: 20000, income: 7500, renew: 500 },
+        c_ecar_200: { tax: 25000, income: 7500, renew: 500 },
+        c_ecar_above: { tax: 30000, income: 9500, renew: 500 },
+
+        c_dozer: { tax: 22000, income: 17500, renew: 1000 },
+        c_tractor: { tax: 8000, income: 3500, renew: 500 },
+        c_auto: { tax: 6000, income: 3500, renew: 500 },
+        c_tiller: { tax: 4500, income: 3000, renew: 500 }
+    };
 
     window.onload = function() {
         document.getElementById('paymentInput').value = DEFAULT_BS_TODAY;
         document.getElementById('jpPaymentInput').value = DEFAULT_BS_TODAY;
         document.getElementById('routePaymentInput').value = DEFAULT_BS_TODAY;
-        document.getElementById('lblDate').innerText = `${DEFAULT_BS_TODAY} ११:२५`;
+        document.getElementById('lblDate').innerText = `${DEFAULT_BS_TODAY} ११:४५`;
     };
 
     function toggleTheme() {
@@ -672,22 +840,32 @@
     }
 
     function switchModule(moduleId) {
-        // Toggle Left Sidebar State
         document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
         if(moduleId === 'taxModule') document.getElementById('sbTax').classList.add('active');
         if(moduleId === 'jaachpassModule') document.getElementById('sbJaachpass').classList.add('active');
         if(moduleId === 'routeModule') document.getElementById('sbRoute').classList.add('active');
 
-        // Toggle Header Tabs
         document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
         if(moduleId === 'taxModule') document.getElementById('tbTax').classList.add('active');
         if(moduleId === 'jaachpassModule') document.getElementById('tbJaachpass').classList.add('active');
         if(moduleId === 'routeModule') document.getElementById('tbRoute').classList.add('active');
 
-        // Toggle Content Panes
         document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
         document.getElementById(moduleId).classList.add('active');
         document.getElementById('receiptBox').style.display = 'none';
+    }
+
+    function handleOwnershipChange() {
+        const val = document.getElementById('vehicleOwnership').value;
+        if(val === 'private') {
+            document.getElementById('privateCategoryGroup').style.display = 'flex';
+            document.getElementById('commercialCategoryGroup').style.display = 'none';
+            document.getElementById('busDiscountNotice').style.display = 'none';
+        } else {
+            document.getElementById('privateCategoryGroup').style.display = 'none';
+            document.getElementById('commercialCategoryGroup').style.display = 'flex';
+            document.getElementById('busDiscountNotice').style.display = 'block';
+        }
     }
 
     function calculateMonthDifference(expDateStr, payDateStr) {
@@ -709,59 +887,98 @@
 
     // MODULE 1: TAX CALCULATION
     function calculateTaxReceipt() {
-        const vehNum = document.getElementById('vehicleNumber').value.trim() || "नभरेको (ध १ प १२३४)";
-        const category = document.getElementById('vehicleCategory').value;
-        const payDate = document.getElementById('paymentInput').value;
+        const ownership = document.getElementById('vehicleOwnership').value;
+        const catKey = (ownership === 'private') 
+            ? document.getElementById('privateCategory').value 
+            : document.getElementById('commercialCategory').value;
         
-        let baseTax = 5000;
-        let renewalFee = 300;
-        let discountLabel = "";
-        let finalTax = baseTax;
+        const vehNum = document.getElementById('vehicleNumber').value.trim() || "नभरेको (प्रविष्ट गर्नुहोस्)";
+        const expDate = document.getElementById('expiryInput').value;
+        const payDate = document.getElementById('paymentInput').value;
+        const years = calculateYearDifference(expDate, payDate);
 
-        if (category === 'p_car') {
-            baseTax = 15000;
-            finalTax = baseTax;
-            renewalFee = 500;
-        } else if (category === 'r_bus') {
-            baseTax = 12000;
-            finalTax = baseTax * 0.40; // 60% discount for commercial bus ONLY
-            discountLabel = ` <span class="badge-discount">६०% छूट लागू</span>`;
-            renewalFee = 500;
-        } else if (category === 'r_truck') {
-            baseTax = 14000;
-            finalTax = baseTax; // No discount for trucks
-            renewalFee = 500;
+        const rateObj = RATES[catKey] || { tax: 5000, renew: 300 };
+        const rawTaxPerYear = rateObj.tax;
+        const discountPct = rateObj.discountPercent || 0;
+        const discountAmtPerYear = (rawTaxPerYear * discountPct) / 100;
+        const finalTaxPerYear = rawTaxPerYear - discountAmtPerYear;
+
+        const totalTax = finalTaxPerYear * years;
+        const totalRenew = (rateObj.renew || 0) * years;
+        
+        // Income tax for commercial
+        const baseIncomeTax = rateObj.income || 0;
+        let totalIncomeTax = 0;
+        let incomeTaxFine = 0;
+
+        if (ownership === 'commercial' && baseIncomeTax > 0) {
+            totalIncomeTax = baseIncomeTax * years;
+            if (years > 1) {
+                // 25% fine on past due fiscal years
+                incomeTaxFine = (baseIncomeTax * (years - 1)) * 0.25;
+            }
         }
 
-        document.getElementById('lblVehNo').innerText = vehNum;
+        const grandTotal = totalTax + totalRenew + totalIncomeTax + incomeTaxFine;
+
+        document.getElementById('lblVehNo').innerText = `${vehNum} (${years} आर्थिक वर्ष)`;
         document.getElementById('lblDate').innerText = payDate;
         document.getElementById('lblReceiptNo').innerText = Math.floor(100000000 + Math.random() * 900000000);
 
-        const grandTotal = finalTax + renewalFee;
-
-        document.getElementById('receiptTableBody').innerHTML = `
+        let rows = `
             <tr>
                 <td>१</td>
                 <td>१४२१३</td>
-                <td>सवारी साधन कर${discountLabel}</td>
-                <td>२०८३/२०८४</td>
-                <td class="text-right">रु. ${baseTax.toLocaleString()}</td>
-                <td class="text-right">रु. ${(baseTax - finalTax).toLocaleString()}</td>
+                <td>सवारी साधन कर ${discountPct > 0 ? `<span class="badge-discount">${discountPct}% छुट लागू</span>` : ''}</td>
+                <td>२०८३/२०८४ (${years} वर्ष)</td>
+                <td class="text-right">रु. ${(rawTaxPerYear * years).toLocaleString()}</td>
+                <td class="text-right">रु. ${(discountAmtPerYear * years).toLocaleString()}</td>
                 <td class="text-right">रु. ०</td>
-                <td class="text-right">रु. ${finalTax.toLocaleString()}</td>
+                <td class="text-right">रु. ${totalTax.toLocaleString()}</td>
             </tr>
             <tr>
                 <td>२</td>
                 <td>१४२५६</td>
                 <td>नवीकरण दस्तुर</td>
                 <td>२०८३/२०८४</td>
-                <td class="text-right">रु. ${renewalFee.toLocaleString()}</td>
+                <td class="text-right">रु. ${totalRenew.toLocaleString()}</td>
                 <td class="text-right">रु. ०</td>
                 <td class="text-right">रु. ०</td>
-                <td class="text-right">रु. ${renewalFee.toLocaleString()}</td>
+                <td class="text-right">रु. ${totalRenew.toLocaleString()}</td>
             </tr>
         `;
 
+        if (totalIncomeTax > 0) {
+            rows += `
+                <tr>
+                    <td>३</td>
+                    <td>११३११</td>
+                    <td>सवारी साधन व्यवसाय आयकर</td>
+                    <td>२०८३/२०८४</td>
+                    <td class="text-right">रु. ${totalIncomeTax.toLocaleString()}</td>
+                    <td class="text-right">रु. ०</td>
+                    <td class="text-right">रु. ०</td>
+                    <td class="text-right">रु. ${totalIncomeTax.toLocaleString()}</td>
+                </tr>
+            `;
+        }
+
+        if (incomeTaxFine > 0) {
+            rows += `
+                <tr>
+                    <td>४</td>
+                    <td>१४२२९</td>
+                    <td>विगत वर्ष आयकर विलम्ब जरिवाना (२५%)</td>
+                    <td>विगत वर्ष</td>
+                    <td class="text-right">रु. ०</td>
+                    <td class="text-right">रु. ०</td>
+                    <td class="text-right">रु. ${incomeTaxFine.toLocaleString()}</td>
+                    <td class="text-right">रु. ${incomeTaxFine.toLocaleString()}</td>
+                </tr>
+            `;
+        }
+
+        document.getElementById('receiptTableBody').innerHTML = rows;
         document.getElementById('receiptGrandTotal').innerText = `कुल जम्मा रु. ${grandTotal.toLocaleString()}/-`;
         document.getElementById('receiptBox').style.display = 'block';
         document.getElementById('receiptBox').scrollIntoView({ behavior: 'smooth' });
@@ -826,7 +1043,7 @@
                 <tr>
                     <td>२</td>
                     <td>१६५४१</td>
-                    <td>६ महिना नाघेको थप दस्तुर <span class="badge-fine">१ पटक थप शुल्क</span></td>
+                    <td>६ महिना नाघेको थप दस्तुर <span class="badge-fine">१ पटक थप दस्तुर</span></td>
                     <td>२०८३/२०८४</td>
                     <td class="text-right">रु. ${extraFee.toLocaleString()}</td>
                     <td class="text-right">रु. ०</td>
